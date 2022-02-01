@@ -267,14 +267,15 @@ INSTALLDIR_MINGW_DOC=$ROOT/install-mingw/share/doc/gcc-arm-none-eabi
 
 PACKAGEDIR=$ROOT/pkg
 
-GMP_VER=6.1.0
-MPFR_VER=3.1.4
-MPC_VER=1.0.3
-ISL_VER=0.18
-EXPAT_VER=2.1.1
-LIBELF_VER=0.8.13
-LIBICONV_VER=1.15
-ZLIB_VER=1.2.8
+GMP_VER=6.2.1
+MPFR_VER=4.1.0
+MPC_VER=1.2.1
+ISL_VER=0.24
+EXPAT_VER=2.4.4
+# LIBELF_VER=0.8.13
+ELFUTILS_VER=0.186
+LIBICONV_VER=1.16
+ZLIB_VER=1.2.11
 PYTHON_WIN_VER=2.7.13
 
 BINUTILS=binutils
@@ -290,7 +291,8 @@ MPFR=mpfr-$MPFR_VER
 MPC=mpc-$MPC_VER
 ISL=isl-$ISL_VER
 EXPAT=expat-$EXPAT_VER
-LIBELF=libelf-$LIBELF_VER
+# LIBELF=libelf-$LIBELF_VER
+ELFUTILS=elfutils-$ELFUTILS_VER
 LIBICONV=libiconv-$LIBICONV_VER
 ZLIB=zlib-$ZLIB_VER
 PYTHON_WIN=python-$PYTHON_WIN_VER
@@ -300,7 +302,8 @@ MPFR_PACK=$MPFR.tar.bz2
 MPC_PACK=$MPC.tar.gz
 ISL_PACK=$ISL.tar.xz
 EXPAT_PACK=$EXPAT.tar.bz2
-LIBELF_PACK=$LIBELF.tar.gz
+# LIBELF_PACK=$LIBELF.tar.gz
+ELFUTILS_PACK=elfutils-$ELFUTILS_VER.tar.bz2
 LIBICONV_PACK=$LIBICONV.tar.gz
 ZLIB_PACK=$ZLIB.tar.gz
 PYTHON_WIN_PACK=$PYTHON_WIN.msi
@@ -308,9 +311,11 @@ PYTHON_WIN_PACK=$PYTHON_WIN.msi
 GMP_URL=https://gmplib.org/download/gmp/$GMP_PACK
 MPFR_URL=http://www.mpfr.org/$MPFR/$MPFR_PACK
 MPC_URL=ftp://ftp.gnu.org/gnu/mpc/$MPC_PACK
-ISL_URL=http://isl.gforge.inria.fr/$ISL_PACK
+# ISL_URL=http://isl.gforge.inria.fr/$ISL_PACK
+ISL_URL=https://libisl.sourceforge.io/$ISL_PACK
 EXPAT_URL=https://downloads.sourceforge.net/project/expat/expat/$EXPAT_VER/$EXPAT_PACK
-LIBELF_URL=https://fossies.org/linux/misc/old/$LIBELF_PACK
+# LIBELF_URL=https://fossies.org/linux/misc/old/$LIBELF_PACK
+ELFUTILS_URL=https://sourceware.org/elfutils/ftp/$ELFUTILS_VER/$ELFUTILS_PACK
 LIBICONV_URL=https://ftp.gnu.org/pub/gnu/libiconv/$LIBICONV_PACK
 ZLIB_URL=http://www.zlib.net/fossils/$ZLIB_PACK
 PYTHON_WIN_URL=https://www.python.org/ftp/python/$PYTHON_WIN_VER/$PYTHON_WIN_PACK
@@ -345,7 +350,8 @@ else
     error "Unsupported build system : $uname_string"
 fi
 
-PREREQS="GMP MPFR MPC ISL EXPAT LIBELF LIBICONV ZLIB"
+# PREREQS="GMP MPFR MPC ISL EXPAT LIBELF LIBICONV ZLIB"
+PREREQS="GMP MPFR MPC ISL EXPAT ELFUTILS LIBICONV ZLIB"
 WIN_PREREQS="PYTHON_WIN"
 if [ "x$BUILD" != "xx86_64-apple-darwin10" ]; then
     PREREQS="$PREREQS $WIN_PREREQS"

@@ -207,16 +207,34 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    echo Task [I-5] /$HOST_NATIVE/libelf/ | tee -a "$BUILDDIR_NATIVE/.stage"
-    rm -rf $BUILDDIR_NATIVE/libelf && mkdir -p $BUILDDIR_NATIVE/libelf
-    pushd $BUILDDIR_NATIVE/libelf
+    # echo Task [I-5] /$HOST_NATIVE/libelf/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    # rm -rf $BUILDDIR_NATIVE/libelf && mkdir -p $BUILDDIR_NATIVE/libelf
+    # pushd $BUILDDIR_NATIVE/libelf
 
-    $SRCDIR/$LIBELF/configure --build=$BUILD \
+    # $SRCDIR/$LIBELF/configure --build=$BUILD \
+    #     --host=$HOST_NATIVE \
+    #     --target=$TARGET \
+    #     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
+    #     --disable-shared \
+    #     --disable-nls
+
+    # make -j$JOBS
+    # make install
+    # #make check
+    # popd
+
+    echo Task [I-5] /$HOST_NATIVE/elfutils/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    rm -rf $BUILDDIR_NATIVE/elfutils && mkdir -p $BUILDDIR_NATIVE/elfutils
+    pushd $BUILDDIR_NATIVE/elfutils
+
+    $SRCDIR/$ELFUTILS/configure --build=$BUILD \
         --host=$HOST_NATIVE \
         --target=$TARGET \
         --prefix=$BUILDDIR_NATIVE/host-libs/usr \
         --disable-shared \
-        --disable-nls
+        --disable-nls \
+        --program-prefix="eu-" \
+        --enable-deterministic-archives
 
     make -j$JOBS
     make install

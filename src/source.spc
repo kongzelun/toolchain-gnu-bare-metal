@@ -1,19 +1,19 @@
 [binutils]
 type=git
 url=git://sourceware.org/git/binutils-gdb.git
-version=a18cd0cab43f45b05e9f8bcbf8fed1d67834442d
+version=116a737f438d03a1bd6aa706b6ea0b4022f3b7e2
 
 [gdb]
 type=git
 url=git://sourceware.org/git/binutils-gdb.git
-version=e908e11a4f74ab6a06aef8c302a03b2a0dbc4d83
+version=ef6ec3333e80e39ce207c6c5d5628bdd5402111d
 
 [gcc]
 type=git
 url=git://gcc.gnu.org/git/gcc.git
-version=fddfd3ce555965864b6116cf541f6355d2057d3d
+version=7ca388565af176bd4efd4f8db1e5e9e11e98ef45
 
 [newlib]
 type=git
 url=git://sourceware.org/git/newlib-cygwin.git
-version=572687310059534b2da9428ca19df992509c8a5d
+version=415fdd4279b85eeec9d54775ce13c5c412451e08
