@@ -27,7 +27,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 set -e
-set -x
+# set -x
 set -u
 set -o pipefail
 

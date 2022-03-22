@@ -31,38 +31,38 @@ EXECUTOR=
 uname_string=`uname | sed 'y/LINUXDARWIN/linuxdarwin/'`
 host_arch=`uname -m | sed 'y/XI/xi/'`
 
-case $uname_string in
-  "linux")
-     case $host_arch in
-       x86_64)
-         DOCKER_VAR=18.04-x86_64
-         ;;
-       aarch64)
-         DOCKER_VAR=14.04-aarch64
-         ;;
-     esac
-     echo Building docker image...
-     docker build -qt ubuntu:$DOCKER_VAR docker/$DOCKER_VAR >/dev/null
-     DOCKER="docker run -v $script_path:/build -w /build --rm ubuntu:$DOCKER_VAR"
-     EXECUTOR=${EXECUTOR:-$DOCKER}
-     ;;
+# case $uname_string in
+#   "linux")
+#      case $host_arch in
+#        x86_64)
+#          DOCKER_VAR=18.04-x86_64
+#          ;;
+#        aarch64)
+#          DOCKER_VAR=14.04-aarch64
+#          ;;
+#      esac
+#      echo Building docker image...
+#      docker build -qt ubuntu:$DOCKER_VAR docker/$DOCKER_VAR >/dev/null
+#      DOCKER="docker run -v $script_path:/build -w /build --rm ubuntu:$DOCKER_VAR"
+#      EXECUTOR=${EXECUTOR:-$DOCKER}
+#      ;;
 
-  "darwin")
-     EXECUTOR=
-     ;;
-  *)
-    echo "Unsupported build system : $uname_string" 2>&1
-    exit 1
-esac
+#   "darwin")
+#      EXECUTOR=
+#      ;;
+#   *)
+#     echo "Unsupported build system : $uname_string" 2>&1
+#     exit 1
+# esac
 
-echo "EXECUTOR = $EXECUTOR"
-# Validate the executor
-$EXECUTOR true
-if [ 0 -ne $? ]; then
-  echo Error: Executor "$EXECUTOR" is not available to run command >&2
-  exit 1
-fi
+# echo "EXECUTOR = $EXECUTOR"
+# # Validate the executor
+# $EXECUTOR true
+# if [ 0 -ne $? ]; then
+#   echo Error: Executor "$EXECUTOR" is not available to run command >&2
+#   exit 1
+# fi
 
-$EXECUTOR ./install-sources.sh && \
-$EXECUTOR ./build-prerequisites.sh $@ && \
-$EXECUTOR ./build-toolchain.sh $@
+$EXECUTOR ./install-sources.sh --skip_steps=mingw32 && \
+$EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources && \
+$EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources
