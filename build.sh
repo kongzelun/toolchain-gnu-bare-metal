@@ -78,6 +78,6 @@ elif [[ $NAME == "Ubuntu" ]]; then
         python-is-python3
 fi
 
-$EXECUTOR ./install-sources.sh --skip_steps=mingw32 && \
-$EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources && \
-$EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources
+$EXECUTOR ./install-sources.sh --skip_steps=mingw32 | tee install-sources.log && \
+$EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources | tee build-prerequisites.log && \
+$EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources | tee build-toolchain.log
