@@ -231,7 +231,6 @@ if [ "x$skip_native_build" != "xyes" ] ; then
         --host=$HOST_NATIVE \
         --target=$TARGET \
         --prefix=$BUILDDIR_NATIVE/host-libs/usr \
-        --disable-shared \
         --disable-nls \
         --program-prefix="eu-" \
         --enable-deterministic-archives

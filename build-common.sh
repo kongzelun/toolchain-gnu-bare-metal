@@ -271,7 +271,7 @@ GMP_VER=6.2.1
 MPFR_VER=4.1.0
 MPC_VER=1.2.1
 ISL_VER=0.24
-EXPAT_VER=2.4.4
+EXPAT_VER=2.4.7
 # LIBELF_VER=0.8.13
 ELFUTILS_VER=0.186
 LIBICONV_VER=1.16
@@ -298,10 +298,10 @@ ZLIB=zlib-$ZLIB_VER
 PYTHON_WIN=python-$PYTHON_WIN_VER
 
 GMP_PACK=$GMP.tar.bz2
-MPFR_PACK=$MPFR.tar.bz2
+MPFR_PACK=$MPFR.tar.xz
 MPC_PACK=$MPC.tar.gz
 ISL_PACK=$ISL.tar.xz
-EXPAT_PACK=$EXPAT.tar.bz2
+EXPAT_PACK=$EXPAT.tar.xz
 # LIBELF_PACK=$LIBELF.tar.gz
 ELFUTILS_PACK=elfutils-$ELFUTILS_VER.tar.bz2
 LIBICONV_PACK=$LIBICONV.tar.gz
@@ -309,11 +309,11 @@ ZLIB_PACK=$ZLIB.tar.gz
 PYTHON_WIN_PACK=$PYTHON_WIN.msi
 
 GMP_URL=https://gmplib.org/download/gmp/$GMP_PACK
-MPFR_URL=http://www.mpfr.org/$MPFR/$MPFR_PACK
+MPFR_URL=https://ftp.gnu.org/gnu/mpfr/$MPFR_PACK
 MPC_URL=ftp://ftp.gnu.org/gnu/mpc/$MPC_PACK
 # ISL_URL=http://isl.gforge.inria.fr/$ISL_PACK
 ISL_URL=https://libisl.sourceforge.io/$ISL_PACK
-EXPAT_URL=https://downloads.sourceforge.net/project/expat/expat/$EXPAT_VER/$EXPAT_PACK
+EXPAT_URL=https://github.com/libexpat/libexpat/releases/download/R_${EXPAT_VER//./_}/$EXPAT_PACK
 # LIBELF_URL=https://fossies.org/linux/misc/old/$LIBELF_PACK
 ELFUTILS_URL=https://sourceware.org/elfutils/ftp/$ELFUTILS_VER/$ELFUTILS_PACK
 LIBICONV_URL=https://ftp.gnu.org/pub/gnu/libiconv/$LIBICONV_PACK
@@ -333,7 +333,7 @@ if [ "x$uname_string" == "xlinux" ] ; then
     GCC_CONFIG_OPTS_LCPP="--with-host-libstdcxx=-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm"
     MD5="md5sum -b"
     PACKAGE_NAME_SUFFIX="${host_arch}-linux"
-    WGET="wget -q"
+    WGET="wget"
 elif [ "x$uname_string" == "xdarwin" ] ; then
     BUILD=x86_64-apple-darwin10
     HOST_NATIVE=x86_64-apple-darwin10

@@ -63,6 +63,21 @@ host_arch=`uname -m | sed 'y/XI/xi/'`
 #   exit 1
 # fi
 
+. /etc/os-release
+
+if [[ $NAME == "KZL Linux" ]]; then
+    :
+elif [[ $NAME == "Ubuntu" ]]; then
+    sudo apt update
+    sudo apt install -y \
+        libmicrohttpd-dev \
+        libsqlite3-dev \
+        texinfo \
+        bison \
+        flex \
+        python-is-python3
+fi
+
 $EXECUTOR ./install-sources.sh --skip_steps=mingw32 && \
 $EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources && \
 $EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources

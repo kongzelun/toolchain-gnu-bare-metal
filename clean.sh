@@ -1,1 +1,1 @@
-rm -rf build-native install-native pkg src
+rm -rf build-native install-native pkg
