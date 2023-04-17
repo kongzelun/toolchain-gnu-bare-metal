@@ -129,7 +129,7 @@ fi
 cd "$SRCDIR"
 
 if [ "x$skip_native_build" != "xyes" ] ; then
-    echo Task [I-0] /$HOST_NATIVE/zlib/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-0] /$HOST_NATIVE/zlib/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/zlib
     copy_dir_clean $SRCDIR/$ZLIB $BUILDDIR_NATIVE/zlib
     pushd $BUILDDIR_NATIVE/zlib
@@ -139,7 +139,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     make install
     popd
 
-    echo Task [I-1] /$HOST_NATIVE/gmp/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-1] /$HOST_NATIVE/gmp/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/gmp && mkdir -p $BUILDDIR_NATIVE/gmp
     pushd $BUILDDIR_NATIVE/gmp
 
@@ -155,7 +155,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    echo Task [I-2] /$HOST_NATIVE/mpfr/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-2] /$HOST_NATIVE/mpfr/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/mpfr && mkdir -p $BUILDDIR_NATIVE/mpfr
     pushd $BUILDDIR_NATIVE/mpfr
 
@@ -172,7 +172,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    echo Task [I-3] /$HOST_NATIVE/mpc/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-3] /$HOST_NATIVE/mpc/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/mpc && mkdir -p $BUILDDIR_NATIVE/mpc
     pushd $BUILDDIR_NATIVE/mpc
 
@@ -190,7 +190,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    echo Task [I-4] /$HOST_NATIVE/isl/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-4] /$HOST_NATIVE/isl/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/isl && mkdir -p $BUILDDIR_NATIVE/isl
     pushd $BUILDDIR_NATIVE/isl
 
@@ -207,7 +207,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    # echo Task [I-5] /$HOST_NATIVE/libelf/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    # echo "Task [I-5] /$HOST_NATIVE/libelf/" | tee -a "$BUILDDIR_NATIVE/.stage"
     # rm -rf $BUILDDIR_NATIVE/libelf && mkdir -p $BUILDDIR_NATIVE/libelf
     # pushd $BUILDDIR_NATIVE/libelf
 
@@ -223,7 +223,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     # #make check
     # popd
 
-    echo Task [I-5] /$HOST_NATIVE/elfutils/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-5] /$HOST_NATIVE/elfutils/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/elfutils && mkdir -p $BUILDDIR_NATIVE/elfutils
     pushd $BUILDDIR_NATIVE/elfutils
 
@@ -240,7 +240,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     #make check
     popd
 
-    echo Task [I-6] /$HOST_NATIVE/expat/ | tee -a "$BUILDDIR_NATIVE/.stage"
+    echo "Task [I-6] /$HOST_NATIVE/expat/" | tee -a "$BUILDDIR_NATIVE/.stage"
     rm -rf $BUILDDIR_NATIVE/expat && mkdir -p $BUILDDIR_NATIVE/expat
     pushd $BUILDDIR_NATIVE/expat
 
@@ -274,7 +274,7 @@ saveenvvar OBJDUMP $HOST_MINGW_TOOL-objdump
 saveenvvar RC $HOST_MINGW_TOOL-windres
 saveenvvar WINDRES $HOST_MINGW_TOOL-windres
 
-echo Task [II-0] /$HOST_MINGW/zlib/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-0] /$HOST_MINGW/zlib/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/zlib
 copy_dir_clean $SRCDIR/$ZLIB $BUILDDIR_MINGW/zlib
 #saveenv
@@ -287,7 +287,7 @@ make install
 popd
 #restoreenv
 
-echo Task [II-1] /$HOST_MINGW/libiconv/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-1] /$HOST_MINGW/libiconv/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/libiconv && mkdir -p $BUILDDIR_MINGW/libiconv
 pushd $BUILDDIR_MINGW/libiconv
 
@@ -302,7 +302,7 @@ make -j$JOBS
 make install
 popd
 
-echo Task [II-2] /$HOST_MINGW/gmp/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-2] /$HOST_MINGW/gmp/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/gmp && mkdir -p $BUILDDIR_MINGW/gmp
 pushd $BUILDDIR_MINGW/gmp
 
@@ -333,7 +333,7 @@ make -j$JOBS
 make install
 popd
 
-echo Task [II-4] /$HOST_MINGW/mpc/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-4] /$HOST_MINGW/mpc/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/mpc && mkdir -p $BUILDDIR_MINGW/mpc
 pushd $BUILDDIR_MINGW/mpc
 
@@ -350,7 +350,7 @@ make -j$JOBS
 make install
 popd
 
-echo Task [II-5] /$HOST_MINGW/isl/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-5] /$HOST_MINGW/isl/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/isl && mkdir -p $BUILDDIR_MINGW/isl
 pushd $BUILDDIR_MINGW/isl
 
@@ -366,22 +366,37 @@ make
 make install
 popd
 
-echo Task [II-6] /$HOST_MINGW/libelf/ | tee -a "$BUILDDIR_MINGW/.stage"
-rm -rf $BUILDDIR_MINGW/libelf && mkdir -p $BUILDDIR_MINGW/libelf
-pushd $BUILDDIR_MINGW/libelf
+# echo "Task [II-6] /$HOST_MINGW/libelf/" | tee -a "$BUILDDIR_MINGW/.stage"
+# rm -rf $BUILDDIR_MINGW/libelf && mkdir -p $BUILDDIR_MINGW/libelf
+# pushd $BUILDDIR_MINGW/libelf
 
-$SRCDIR/$LIBELF/configure --build=$BUILD \
-    --host=$HOST_MINGW \
+# $SRCDIR/$LIBELF/configure --build=$BUILD \
+#     --host=$HOST_MINGW \
+#     --target=$TARGET \
+#     --prefix=$BUILDDIR_MINGW/host-libs/usr \
+#     --disable-shared
+
+# make -j$JOBS
+# make install
+# popd
+
+echo "Task [II-6] /$HOST_NATIVE/elfutils/" | tee -a "$BUILDDIR_NATIVE/.stage"
+rm -rf $BUILDDIR_NATIVE/elfutils && mkdir -p $BUILDDIR_NATIVE/elfutils
+pushd $BUILDDIR_NATIVE/elfutils
+
+$SRCDIR/$ELFUTILS/configure --build=$BUILD \
+    --host=$HOST_NATIVE \
     --target=$TARGET \
-    --prefix=$BUILDDIR_MINGW/host-libs/usr \
-    --disable-shared \
-    --disable-nls
+    --prefix=$BUILDDIR_NATIVE/host-libs/usr \
+    --program-prefix="eu-" \
+    --enable-deterministic-archives
 
 make -j$JOBS
 make install
+#make check
 popd
 
-echo Task [II-7] /$HOST_MINGW/expat/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-7] /$HOST_MINGW/expat/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/expat && mkdir -p $BUILDDIR_MINGW/expat
 pushd $BUILDDIR_MINGW/expat
 

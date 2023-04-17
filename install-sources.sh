@@ -42,7 +42,7 @@ script_path=`cd $(dirname $0) && pwd -P`
 # needed to build the GNU Tools Arm Embedded toolchain.
 usage ()
 {
-cat<<EOF
+cat << EOF
 Usage: $0 [--skip_steps=...]
 
 This script will install sources needed to build the GNU Tools Arm Embedded toolchain.
@@ -146,7 +146,7 @@ checkout_source ()
 
 cd $SRCDIR
 for prereq in $PREREQS; do
-    eval [ -d \$$prereq ] && continue
+    eval "[ -d \$$prereq ]" && continue
     if [ -z "${WIN_PREREQS%%*${prereq}*}" -a $skip_mingw32 = yes ]; then
 	continue
     fi

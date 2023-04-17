@@ -63,6 +63,11 @@ host_arch=`uname -m | sed 'y/XI/xi/'`
 #   exit 1
 # fi
 
+set -e
+# set -x
+set -u
+set -o pipefail
+
 . /etc/os-release
 
 if [[ $NAME == "KZL Linux" ]]; then
@@ -78,6 +83,10 @@ elif [[ $NAME == "Ubuntu" ]]; then
         python-is-python3
 fi
 
-$EXECUTOR ./install-sources.sh --skip_steps=mingw32 | tee install-sources.log && \
-$EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources | tee build-prerequisites.log && \
-$EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources | tee build-toolchain.log
+# $EXECUTOR ./install-sources.sh --skip_steps=mingw32 | tee install-sources.log && \
+# $EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources | tee build-prerequisites.log && \
+# $EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources | tee build-toolchain.log
+
+./install-sources.sh --skip_steps=mingw32 > install-sources.log 2>&1
+./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources > build-prerequisites.log 2>&1
+./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources > build-toolchain.log 2>&1
