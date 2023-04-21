@@ -143,12 +143,11 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/gmp && mkdir -p $BUILDDIR_NATIVE/gmp
     pushd $BUILDDIR_NATIVE/gmp
 
-    CPPFLAGS="-fexceptions" $SRCDIR/$GMP/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --prefix=$BUILDDIR_NATIVE/host-libs/usr \
+    CPPFLAGS="-fexceptions" "$SRCDIR/$GMP/"configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --prefix="$BUILDDIR_NATIVE/host-libs/usr" \
         --enable-cxx \
-        --disable-shared \
-        --disable-nls
+        --disable-shared
 
     make -j$JOBS
     make install
@@ -159,12 +158,11 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/mpfr && mkdir -p $BUILDDIR_NATIVE/mpfr
     pushd $BUILDDIR_NATIVE/mpfr
 
-    $SRCDIR/$MPFR/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --target=$TARGET \
+    $SRCDIR/$MPFR/configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --target="$TARGET" \
         --prefix=$BUILDDIR_NATIVE/host-libs/usr \
         --disable-shared \
-        --disable-nls \
         --with-gmp=$BUILDDIR_NATIVE/host-libs/usr
 
     make -j$JOBS
@@ -176,12 +174,11 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/mpc && mkdir -p $BUILDDIR_NATIVE/mpc
     pushd $BUILDDIR_NATIVE/mpc
 
-    $SRCDIR/$MPC/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --target=$TARGET \
+    $SRCDIR/$MPC/configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --target="$TARGET" \
         --prefix=$BUILDDIR_NATIVE/host-libs/usr \
         --disable-shared \
-        --disable-nls \
         --with-gmp=$BUILDDIR_NATIVE/host-libs/usr \
         --with-mpfr=$BUILDDIR_NATIVE/host-libs/usr
 
@@ -194,12 +191,11 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/isl && mkdir -p $BUILDDIR_NATIVE/isl
     pushd $BUILDDIR_NATIVE/isl
 
-    $SRCDIR/$ISL/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --target=$TARGET \
+    $SRCDIR/$ISL/configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --target="$TARGET" \
         --prefix=$BUILDDIR_NATIVE/host-libs/usr \
         --disable-shared \
-        --disable-nls \
         --with-gmp-prefix=$BUILDDIR_NATIVE/host-libs/usr
 
     make
@@ -211,9 +207,9 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     # rm -rf $BUILDDIR_NATIVE/libelf && mkdir -p $BUILDDIR_NATIVE/libelf
     # pushd $BUILDDIR_NATIVE/libelf
 
-    # $SRCDIR/$LIBELF/configure --build=$BUILD \
-    #     --host=$HOST_NATIVE \
-    #     --target=$TARGET \
+    # $SRCDIR/$LIBELF/configure --build="$BUILD" \
+    #     --host="$HOST_NATIVE" \
+    #     --target="$TARGET" \
     #     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     #     --disable-shared \
     #     --disable-nls
@@ -227,13 +223,13 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/elfutils && mkdir -p $BUILDDIR_NATIVE/elfutils
     pushd $BUILDDIR_NATIVE/elfutils
 
-    $SRCDIR/$ELFUTILS/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --target=$TARGET \
-        --prefix=$BUILDDIR_NATIVE/host-libs/usr \
-        --disable-nls \
+    $SRCDIR/$ELFUTILS/configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --target="$TARGET" \
+        --prefix="$BUILDDIR_NATIVE/host-libs/usr" \
         --program-prefix="eu-" \
-        --enable-deterministic-archives
+        --enable-deterministic-archives \
+        --disable-nls
 
     make -j$JOBS
     make install
@@ -244,12 +240,11 @@ if [ "x$skip_native_build" != "xyes" ] ; then
     rm -rf $BUILDDIR_NATIVE/expat && mkdir -p $BUILDDIR_NATIVE/expat
     pushd $BUILDDIR_NATIVE/expat
 
-    $SRCDIR/$EXPAT/configure --build=$BUILD \
-        --host=$HOST_NATIVE \
-        --target=$TARGET \
-        --prefix=$BUILDDIR_NATIVE/host-libs/usr \
-        --disable-shared \
-        --disable-nls
+    "$SRCDIR/$EXPAT/"configure --build="$BUILD" \
+        --host="$HOST_NATIVE" \
+        --target="$TARGET" \
+        --prefix="$BUILDDIR_NATIVE/host-libs/usr" \
+        --disable-shared
 
     make -j$JOBS
     make install
@@ -281,7 +276,7 @@ copy_dir_clean $SRCDIR/$ZLIB $BUILDDIR_MINGW/zlib
 #saveenvvar AR "$HOST_MINGW_TOOL-ar"
 pushd $BUILDDIR_MINGW/zlib
 #install zlib at .../host-libs/zlib, prevent gcc from linking into this external zlib
-./configure --static --prefix=$BUILDDIR_MINGW/host-libs/zlib
+./configure --static --prefix="$BUILDDIR_MINGW/host-libs/zlib"
 make
 make install
 popd
@@ -291,12 +286,11 @@ echo "Task [II-1] /$HOST_MINGW/libiconv/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/libiconv && mkdir -p $BUILDDIR_MINGW/libiconv
 pushd $BUILDDIR_MINGW/libiconv
 
-$SRCDIR/$LIBICONV/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --target=$TARGET \
+"$SRCDIR/$LIBICONV/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
     --prefix=$BUILDDIR_MINGW/host-libs/usr \
-    --disable-shared \
-    --disable-nls
+    --disable-shared
 
 make -j$JOBS
 make install
@@ -306,27 +300,25 @@ echo "Task [II-2] /$HOST_MINGW/gmp/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/gmp && mkdir -p $BUILDDIR_MINGW/gmp
 pushd $BUILDDIR_MINGW/gmp
 
-$SRCDIR/$GMP/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --prefix=$BUILDDIR_MINGW/host-libs/usr \
+"$SRCDIR/$GMP/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --prefix="$BUILDDIR_MINGW/host-libs/usr" \
     --disable-shared \
-    --enable-cxx \
-    --disable-nls
+    --enable-cxx
 
 make -j$JOBS
 make install
 popd
 
-echo Task [II-3] /$HOST_MINGW/mpfr/ | tee -a "$BUILDDIR_MINGW/.stage"
+echo "Task [II-3] /$HOST_MINGW/mpfr/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/mpfr && mkdir -p $BUILDDIR_MINGW/mpfr
 pushd $BUILDDIR_MINGW/mpfr
 
-$SRCDIR/$MPFR/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --target=$TARGET \
+"$SRCDIR/$MPFR/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
     --prefix=$BUILDDIR_MINGW/host-libs/usr \
     --disable-shared \
-    --disable-nls \
     --with-gmp=$BUILDDIR_MINGW/host-libs/usr
 
 make -j$JOBS
@@ -337,14 +329,13 @@ echo "Task [II-4] /$HOST_MINGW/mpc/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/mpc && mkdir -p $BUILDDIR_MINGW/mpc
 pushd $BUILDDIR_MINGW/mpc
 
-$SRCDIR/$MPC/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --target=$TARGET \
-    --prefix=$BUILDDIR_MINGW/host-libs/usr \
+"$SRCDIR/$MPC/configure" --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
+    --prefix="$BUILDDIR_MINGW/host-libs/usr" \
     --disable-shared \
-    --disable-nls \
-    --with-gmp=$BUILDDIR_MINGW/host-libs/usr \
-    --with-mpfr=$BUILDDIR_MINGW/host-libs/usr
+    --with-gmp="$BUILDDIR_MINGW/host-libs/usr" \
+    --with-mpfr="$BUILDDIR_MINGW/host-libs/usr"
 
 make -j$JOBS
 make install
@@ -354,13 +345,12 @@ echo "Task [II-5] /$HOST_MINGW/isl/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/isl && mkdir -p $BUILDDIR_MINGW/isl
 pushd $BUILDDIR_MINGW/isl
 
-$SRCDIR/$ISL/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --target=$TARGET \
-    --prefix=$BUILDDIR_MINGW/host-libs/usr  \
+"$SRCDIR/$ISL/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
+    --prefix="$BUILDDIR_MINGW/host-libs/usr"  \
     --disable-shared \
-    --disable-nls \
-    --with-gmp-prefix=$BUILDDIR_MINGW/host-libs/usr
+    --with-gmp-prefix="$BUILDDIR_MINGW/host-libs/usr"
 
 make
 make install
@@ -370,9 +360,9 @@ popd
 # rm -rf $BUILDDIR_MINGW/libelf && mkdir -p $BUILDDIR_MINGW/libelf
 # pushd $BUILDDIR_MINGW/libelf
 
-# $SRCDIR/$LIBELF/configure --build=$BUILD \
-#     --host=$HOST_MINGW \
-#     --target=$TARGET \
+# $SRCDIR/$LIBELF/configure --build="$BUILD" \
+#     --host="$HOST_MINGW" \
+#     --target="$TARGET" \
 #     --prefix=$BUILDDIR_MINGW/host-libs/usr \
 #     --disable-shared
 
@@ -380,16 +370,17 @@ popd
 # make install
 # popd
 
-echo "Task [II-6] /$HOST_NATIVE/elfutils/" | tee -a "$BUILDDIR_NATIVE/.stage"
-rm -rf $BUILDDIR_NATIVE/elfutils && mkdir -p $BUILDDIR_NATIVE/elfutils
-pushd $BUILDDIR_NATIVE/elfutils
+echo "Task [II-6] /$HOST_MINGW/elfutils/" | tee -a "$BUILDDIR_MINGW/.stage"
+rm -rf $BUILDDIR_MINGW/elfutils && mkdir -p $BUILDDIR_MINGW/elfutils
+pushd $BUILDDIR_MINGW/elfutils
 
-$SRCDIR/$ELFUTILS/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
-    --target=$TARGET \
-    --prefix=$BUILDDIR_NATIVE/host-libs/usr \
+"$SRCDIR/$ELFUTILS/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
+    --prefix="$BUILDDIR_MINGW/host-libs/usr" \
     --program-prefix="eu-" \
-    --enable-deterministic-archives
+    --enable-deterministic-archives \
+    --disable-nls
 
 make -j$JOBS
 make install
@@ -400,15 +391,13 @@ echo "Task [II-7] /$HOST_MINGW/expat/" | tee -a "$BUILDDIR_MINGW/.stage"
 rm -rf $BUILDDIR_MINGW/expat && mkdir -p $BUILDDIR_MINGW/expat
 pushd $BUILDDIR_MINGW/expat
 
-$SRCDIR/$EXPAT/configure --build=$BUILD \
-    --host=$HOST_MINGW \
-    --target=$TARGET \
-    --prefix=$BUILDDIR_MINGW/host-libs/usr \
-    --disable-shared \
-    --disable-nls
+"$SRCDIR/$EXPAT/"configure --build="$BUILD" \
+    --host="$HOST_MINGW" \
+    --target="$TARGET" \
+    --prefix="$BUILDDIR_MINGW/host-libs/usr" \
+    --disable-shared
 
 make -j$JOBS
 make install
 popd
 restoreenv
-
