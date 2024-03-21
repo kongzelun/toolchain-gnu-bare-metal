@@ -1,19 +1,19 @@
 [binutils]
 type=git
 url=git://sourceware.org/git/binutils-gdb.git
-version=binutils-2_38-branch
+version=binutils-2_42
 
 [gdb]
 type=git
 url=git://sourceware.org/git/binutils-gdb.git
-version=gdb-11.2-release
+version=gdb-14.2-release
 
 [gcc]
 type=git
 url=git://gcc.gnu.org/git/gcc.git
-version=releases/gcc-11.3.0
+version=releases/gcc-11.4.0
 
 [newlib]
 type=git
 url=git://sourceware.org/git/newlib-cygwin.git
-version=newlib-4.1.0
+version=newlib-4.4.0

@@ -6,3 +6,4 @@ src/*
 build*
 install*
 pkg*
+!install-dependencies.sh

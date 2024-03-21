@@ -68,25 +68,13 @@ set -e
 set -u
 set -o pipefail
 
-. /etc/os-release
-
-if [[ $NAME == "KZL Linux" ]]; then
-    :
-elif [[ $NAME == "Ubuntu" ]]; then
-    sudo apt update
-    sudo apt install -y \
-        libmicrohttpd-dev \
-        libsqlite3-dev \
-        texinfo \
-        bison \
-        flex \
-        python-is-python3
-fi
-
 # $EXECUTOR ./install-sources.sh --skip_steps=mingw32 | tee install-sources.log && \
 # $EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources | tee build-prerequisites.log && \
 # $EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources | tee build-toolchain.log
 
+echo "Installing sources..."
 ./install-sources.sh --skip_steps=mingw32 > install-sources.log 2>&1
+echo "Building prerequisites..."
 ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources > build-prerequisites.log 2>&1
+echo "Building toolchain..."
 ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources > build-toolchain.log 2>&1

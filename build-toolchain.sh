@@ -998,7 +998,7 @@ if [ "x$skip_md5_checksum" != "xyes" ]; then
     MD5_CHECKSUM_FILE="md5-$(uname -m)-$(uname | tr '[:upper:]' '[:lower:]').txt"
     rm -rf "$MD5_CHECKSUM_FILE"
     $MD5 "$PACKAGE_NAME_NATIVE.tar.bz2" > "$MD5_CHECKSUM_FILE"
-    
+
     if [ "$(uname)" = "Darwin" ]; then
         $MD5 "$PACKAGE_NAME_NATIVE.pkg" >> "$MD5_CHECKSUM_FILE"
     fi
