@@ -1,9 +1,6 @@
+build-native
+install-native
+pkg
 src/*
-!src/build-manual
-!src/installation
-!src/samples
 !src/source.spc
-build*
-install*
-pkg*
-!install-dependencies.sh
+*.log

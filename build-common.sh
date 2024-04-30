@@ -233,7 +233,7 @@ copy_multi_libs() {
 # Input file must be in following format
 #   * Each sections starts with [section_name] with no leading white space
 #   * Elements must be in style of A=B, with no space at either side of =
-# 
+#
 parse_ini ()
 {
 spc_file=$1
@@ -267,16 +267,16 @@ INSTALLDIR_MINGW_DOC=$ROOT/install-mingw/share/doc/gcc-arm-none-eabi
 
 PACKAGEDIR=$ROOT/pkg
 
-GMP_VER=6.2.1
-MPFR_VER=4.2.0
+GMP_VER=6.3.0
+MPFR_VER=4.2.1
 MPC_VER=1.3.1
 ISL_VER=0.26
-EXPAT_VER=2.5.0
+EXPAT_VER=2.6.2
 # LIBELF_VER=0.8.13
-ELFUTILS_VER=0.189
+ELFUTILS_VER=0.191
 LIBICONV_VER=1.17
-ZLIB_VER=1.2.13
-PYTHON_WIN_VER=3.11.3
+ZLIB_VER=1.3.1
+PYTHON_WIN_VER=3.12.2
 
 BINUTILS=binutils
 GCC=gcc
