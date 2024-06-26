@@ -229,8 +229,7 @@ if [ "x$skip_native_build" != "xyes" ] ; then
         --prefix="$BUILDDIR_NATIVE/host-libs/usr" \
         --program-prefix="eu-" \
         --enable-deterministic-archives \
-        --disable-nls \
-        --disable-debuginfod
+        --disable-nls
 
     make -j$JOBS
     make install
