@@ -6,7 +6,7 @@ version=binutils-2_39
 [gdb]
 type=git
 url=git://sourceware.org/git/binutils-gdb.git
-version=gdb-14.2-release
+version=gdb-12.1-release
 
 [gcc]
 type=git
