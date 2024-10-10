@@ -72,9 +72,24 @@ set -o pipefail
 # $EXECUTOR ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources | tee build-prerequisites.log && \
 # $EXECUTOR ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources | tee build-toolchain.log
 
+if [[ -f "/usr/local/bin/python3.12" ]]; then
+    echo "Linking /usr/local/bin/python3.12 to python..."
+    sudo ln -sf /usr/local/bin/python3.12 /usr/local/bin/python
+fi
+
+python -m pip wheel --wheel-dir ~/wheels --no-binary :all: pip wheel setuptools
+python -m pip install -U --no-index --find-links ~/wheels pip wheel setuptools
+
+echo "Installing dependencies..."
+./install-dependencies.sh > install-dependencies.log 2>&1
 echo "Installing sources..."
 ./install-sources.sh --skip_steps=mingw32 > install-sources.log 2>&1
 echo "Building prerequisites..."
 ./build-prerequisites.sh --skip_steps=howto,mingw32,package_sources > build-prerequisites.log 2>&1
 echo "Building toolchain..."
 ./build-toolchain.sh --skip_steps=howto,manual,mingw32,mingw32-gdb-with-python,package_sources > build-toolchain.log 2>&1
+
+if [[ -f "/usr/local/bin/python3.12" ]]; then
+    echo "Removing /usr/local/bin/python link..."
+    sudo rm /usr/local/bin/python
+fi
